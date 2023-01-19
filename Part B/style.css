@@ -1,0 +1,55 @@
+#Container {
+    background-color: rgb(224, 218, 161);
+    background-repeat: no-repeat;
+    margin: auto;
+    width:640px;
+    height: 800px;
+    padding-top: 10px;
+}
+header {
+    text-align: center;
+    font-size: 2em;
+    padding-top: 2%;
+}
+#bar {
+    text-align: left;
+    background-color: aqua;
+}
+label{
+    float:left;
+    width:25%;
+    text-align:right;
+    margin-right:5px;
+}
+input{
+    float: left;
+    width: 30%;
+}
+#form-container{
+    padding-top: 2%;
+}
+p {
+    padding-left: 5%;
+    padding-right: 5%;
+    font-style: normal;
+
+}
+h3 {
+    padding-left: 5%;
+    padding-right: 5%;
+    font-style: italic;
+}
+
+.gallery{
+    padding-top: 10%;
+    float: left;
+    width: auto;
+    height: auto;
+    border: 5px;
+    padding:5px;
+    border: 5px;
+}.gallery:hover {
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 3px -3px rgb(205, 204, 204);
+    border: 1px solid rgb(205, 204, 204);}
