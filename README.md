@@ -9,3 +9,4 @@ Designed a portfolio page for the Assignment 2.
 - Make an image gallery with hover effects and caption
 - Use media query for dynamic page layout
 - Use of HTML and HTML5 tags 
+- If table is used, add style
