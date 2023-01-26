@@ -1,4 +1,4 @@
-# 001067923_Tarush_G_Singh
+# 001067923_Tarush_G_Singh_Assignment2
 Designed a portfolio page for the Assignment 2.
 
 # Requirments for the pages:
