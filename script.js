@@ -13,7 +13,7 @@ var socialMedia = {
   youtube: 'http://youtube.com'
 };
 
-var x = 4;
+var x = 1;
 function myCreateFunction() {
   var table = document.getElementById("myTable");
   var row = table.insertRow(-1);
