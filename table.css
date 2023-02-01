@@ -17,8 +17,18 @@
 }
 #button {
 	color:#fff;
-	background-color: orange;
+	background-color: grey;
 	border-radius: 3px;
-	border:2px solid orange;
+	border:2px solid grey;
 	margin-left: 180px;
+}
+.selected{background-color:yellow;}
+.enable{
+	background-color: orange;
+}
+.done{
+	display: none;
+}
+.thtab{
+	display: none;
 }
