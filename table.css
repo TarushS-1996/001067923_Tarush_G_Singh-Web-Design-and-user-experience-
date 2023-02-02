@@ -15,20 +15,35 @@
 	color: #fff;
 	background-color: #a7c942;
 }
+
+#myTable td:nth-child(9), #myTable th:nth-child(9){
+	display: none;
+}
+
+#myTable td:nth-child(10), #myTable th:nth-child(10){
+	display: none;
+}
+
+.display-cell{
+	display: table-cell !important;
+}
+
+.dropDownTextArea {
+	visibility: collapse;
+}
+
+
 #button {
 	color:#fff;
-	background-color: grey;
+	background-color: orange;
 	border-radius: 3px;
-	border:2px solid grey;
+	border:2px solid orange;
 	margin-left: 180px;
 }
-.selected{background-color:yellow;}
-.enable{
-	background-color: orange;
+
+#button:disabled{
+	border: 1px solid grey;
+	background-color: #c4c1c1;
+	color: grey;
 }
-.done{
-	display: none;
-}
-.thtab{
-	display: none;
-}
+
