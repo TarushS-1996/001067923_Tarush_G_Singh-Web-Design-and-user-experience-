@@ -28,7 +28,7 @@ function getRandom(min, max) {
 
 let inpchk = document.querySelectorAll("input[type=checkbox]");
 
-function handleChkboxTgle(checkbox) {
+function handleCheckboxTgle(checkbox) {
   console.log(checkbox.checked);
 
   let Row = checkbox.parentElement.parentElement;
@@ -50,7 +50,7 @@ function handleChkboxTgle(checkbox) {
 
   }
 
-  submitBtnandColVisibilitytoggle();
+  Visibilitytoggle();
 }
 
 function removeAllChldNode(parent) {
@@ -75,7 +75,7 @@ function newDelBtn(tr) {
   btn.addEventListener('click', () => {
     tr.nextElementSibling.remove();
     tr.remove();
-    submitBtnandColVisibilitytoggle();
+    Visibilitytoggle();
     defAlert('record deleted successfully');
   })
 
@@ -96,7 +96,7 @@ function newEditBtn() {
   return btn;
 }
 
-function submitBtnandColVisibilitytoggle() {
+function Visibilitytoggle() {
   let chkboxes = document.querySelectorAll("input[type=checkbox]");
 
   let checked = false;
@@ -135,7 +135,7 @@ function tglDropDwn(img) {
 
 function InputFunctionality(input) {
   input.addEventListener('change', () => {
-    handleChkboxTgle(input);
+    handleCheckboxTgle(input);
   })
 
   const img = input.nextElementSibling.nextElementSibling.nextElementSibling;
@@ -144,7 +144,7 @@ function InputFunctionality(input) {
     tglDropDwn(img);
   })
 
-  handleChkboxTgle(input);
+  handleCheckboxTgle(input);
 }
 
 let cln = document.querySelectorAll("#myTable tbody tr");
@@ -188,7 +188,7 @@ let addNewButton = document.querySelector("button#add");
 addNewButton.addEventListener('click', () => {
   try {
     addNewStudent();
-    submitBtnandColVisibilitytoggle();
+    Visibilitytoggle();
   } catch (error) {
       alert(`Unable to add student: ${error}`);
     }
