@@ -49,7 +49,7 @@
 			<input type="text" name="emailId" id="emailId" placeholder="yourname@domain.com" />
 			<br><br>
 			<div id="error_emailId" style="display: none; color: red;">
-                Invalid Email address, Please enter valid Email in user@domain.com
+                Invalid Email address, Please enter valid @northeastern.edu email address
                 <br><br>
             </div>
 
@@ -66,6 +66,9 @@
 			<label for="streetAddress1">Street Address 1*:</label>
 			<input type="text" name="streetAddress1" id="streetAddress1" placeholder="address" />
 			<br><br>
+            <div id = "error_Address1" style="display: none; color:red;">
+                Invalid address, Please enter a valid address.
+            </div>
 
 			<label for="streetAddress2">Street Address 2:</label>
 			<input type="text" name="streetAddress2" id="streetAddress2" placeholder="address" />
@@ -74,14 +77,24 @@
 			<label for="city">City*:</label>
 			<input type="text" name="city" id="city" placeholder="city" />
 			<br><br>
+            <div id = "error_city" style="display: none; color:red;">
+                Invalid city, Please enter a valid city.
+            </div>
 
 			<label for="state">State*:</label>
 			<input type="text" name="state" id="state" placeholder="state" />
 			<br><br>
+            <div id = "error_state" style="display: none; color:red;">
+                Invalid state, Please enter a valid state.
+            </div>
 			
             <label for="zipcode">ZipCode*:</label>
 			<input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" />
 			<br><br>
+            <div id = "error_zipcode" style="display: none; color:red;">
+                Invalid zipcode, Please enter a valid zipcode of 5 digits.
+            </div>
+
              
             <label for="zipcode">How did you hear*:</label>
 			<input type='checkbox' name="source" value="facebook" /> Facebook
@@ -108,12 +121,20 @@
 		var validLastName = false;
         var validEmail = false;
         var validPhone = false;
+        var validAddress1 = false;
+        var validCity = false;
+        var validState = false;
+        var validZipcode = false;
 
         // regular expressions for name, email and phone
         var regExName = /^[a-zA-Z]+$/;
 		var regLastName = /^[a-zA-Z]+$/;
-        var regExEmail = /([\w\.]+)@([\w\.]+)\.(\w+)/;
+        var regExEmail = /([\w\.]+)@northeastern.edu/;
         var regExPhone = /\d{3}-?\d{3}-\d{4}$/;
+        var regExAddress1 = /^[a-zA-Z0-9\s,.'-]{3,}$/;
+        var regExCity = /^[a-zA-Z]+$/;
+        var regExState = /^[a-zA-Z]+$/;
+        var regexZipcode = /^\d{5}$/;
 
         //values 
         var firstName = document.getElementById("firstName");
@@ -127,6 +148,18 @@
 
         var phoneNumber = document.getElementById("phoneNumber");
         phoneNumber.addEventListener("input", validate)
+
+        var address1 = document.getElementById("streetAddress1");
+        address1.addEventListener("input", validate)
+
+        var city = document.getElementById("city");
+        city.addEventListener("input", validate)
+
+        var state = document.getElementById("state");
+        state.addEventListener("input", validate)
+
+        var zipcode = document.getElementById("zipcode");
+        zipcode.addEventListener("input", validate)
 
         // write a funcyion for validate
         function validate(e){
@@ -187,6 +220,52 @@
                         validPhone = true;
                     }
                     break;
+                case "address1":
+                    if(!value.trim().match(regExAddress1)){
+                        document.getElementById(em).style.display = "block";
+                        this.style.border = "2px solid red";
+                        validAddress1 = false;
+                    }else{
+                        document.getElementById(em).style.display = "none";
+                        this.style.border = "";
+                        validAddress1 = true;
+                    }
+                    break;
+                case "city":
+                    if(!value.trim().match(regExCity)){
+                        document.getElementById(em).style.display = "block";
+                        this.style.border = "2px solid red";
+                        validCity = false;
+                    }
+                    else{
+                        document.getElementById(em).style.display = "none";
+                        this.style.border = "";
+                        validCity = true;
+                    }
+                    break;
+                case "state":
+                    if(!value.trim().match(regExState)){
+                        document.getElementById(em).style.display = "block";
+                        this.style.border = "2px solid red";
+                        validState = false;
+                    }
+                    else{
+                        document.getElementById(em).style.display = "none";
+                        this.style.border = "";
+                        validState = true;
+                    }
+                    break;
+                case "zipcode":
+                    if(!value.trim().match(regexZipcode) ){
+                        document.getElementById(em).style.display = "block";
+                        this.style.border = "2px solid red";
+                        validZipcode = false;
+                    }else{
+                        document.getElementById(em).style.display = "none";
+                        this.style.border = "";
+                        validZipcode = true;
+                    }
+                    break;
             }
 
         }
@@ -194,7 +273,7 @@
         function submitted(e){
             //e.preventDefault();
             console.log("validname", validName)
-            if(validName && validLastName && validEmail && validPhone){
+            if(validName && validLastName && validEmail && validPhone && validAddress1 && validCity && validState && validZipcode){
                 alert("Data entered succesfull");
                 //window.location.href = "FeedbackComplete.html";
             }
