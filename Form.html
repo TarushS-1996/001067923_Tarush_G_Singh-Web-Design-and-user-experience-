@@ -23,7 +23,7 @@
 	 <h3>Love something? Hate something? Let us know!</h3>
 		 Note : Fields marked with an asterisk(*) are mandatory
 		 <br><br>
-		 <form id="myForm" method="post" novalidate>
+		 <form id="myForm">
 			<label>Title*:</label>
 			<input type="radio" name="title" id="miss" value="miss" required="required"/>Miss
 			<input type="radio" name="title" id="mr" value="mr" required="required"/>Mr.
@@ -100,11 +100,34 @@
 			<input type='checkbox' name="source" value="facebook" /> Facebook
             <input type='checkbox' name="source" value="google" /> Google
             <input type='checkbox' name="source" value="yelp" /> Yelp 
-			<br><br> 
-             
+			<br><br>
+            
+            <label for="drinks">Drinks*:</label>
+            <select name="drinks" id="drinks" onchange="validateDrink(this)" required="required">
+                <option value="None">--Please choose a drink--</option>
+                <option value="Coffee">Coffee</option>
+                <option value="Tea">Tea</option>
+                <option value="Sandwich">Sandwich</option>
+            </select>
+            <br><br>
+            <div id = "selectedCoffee">
+                <label id = "selected-Coffee" for="selectCoffee" style="display: none;">Coffee-Large<br>(1$ Extra)</label>
+            </div>
+            <div id = "selectedTea" >
+                <label id = "selected-Tea" for="selectTea" style="display: none;">Lemon tea-Large<br>(1$ Extra)</label>
+            </div>
+            <div id = "selectedSandwich" >
+                <label id = "selected-Sandwich" for="selectSandwich" style="display: none;">Chicken cheese sandwich-Large<br>(1$ Extra)</label>
+            </div>
+            <div id = "selectedNone" style="display: none;"></div>
+
+            <br><br>
 			<label for="comments">Comments*:</label>
 			<textarea name="text" id="comments" placeholder="Your comments" rows="5" cols="25"></textarea>
 			<br><br>
+            <div id = "error_comments" style="display: none; color:red;">
+                Please provide a comment or two for us to improve upon.
+            </div><br><br>
 			<input type="Submit">
 			<input type="Reset">
 			<br><br>
@@ -125,6 +148,7 @@
         var validCity = false;
         var validState = false;
         var validZipcode = false;
+        var validComment = false;
 
         // regular expressions for name, email and phone
         var regExName = /^[a-zA-Z]+$/;
@@ -135,6 +159,7 @@
         var regExCity = /^[a-zA-Z]+$/;
         var regExState = /^[a-zA-Z]+$/;
         var regexZipcode = /^\d{5}$/;
+        var regexComments = /.*/;
 
         //values 
         var firstName = document.getElementById("firstName");
@@ -160,6 +185,9 @@
 
         var zipcode = document.getElementById("zipcode");
         zipcode.addEventListener("input", validate)
+
+        var comments = document.getElementById("comments");
+        comments.addEventListener("input", validate)
 
         // write a funcyion for validate
         function validate(e){
@@ -220,8 +248,8 @@
                         validPhone = true;
                     }
                     break;
-                case "address1":
-                    if(!value.trim().match(regExAddress1)){
+                case "streetAddress1":
+                    if(!value.trim() == ""){
                         document.getElementById(em).style.display = "block";
                         this.style.border = "2px solid red";
                         validAddress1 = false;
@@ -256,7 +284,7 @@
                     }
                     break;
                 case "zipcode":
-                    if(!value.trim().match(regexZipcode) ){
+                    if(!value.trim().match(regexZipcode)){
                         document.getElementById(em).style.display = "block";
                         this.style.border = "2px solid red";
                         validZipcode = false;
@@ -266,19 +294,52 @@
                         validZipcode = true;
                     }
                     break;
+                case "comments":
+                    if(value.trim()== ""){
+                        document.getElementById(em).style.display = "block";
+                        this.style.border = "2px solid red";
+                        validComment = false;
+                    }else{
+                        document.getElementById(em).style.display = "none";
+                        this.style.border = "";
+                        validComment = true;
+                    }
+                    break;                
             }
 
         }
+
+        function validateDrink(value){
+            var selecDrin = value.options[value.selectedIndex].value;
+            if(selecDrin == 1){
+                document.getElementById("selected-Coffee").style.display = "block";
+                document.getElementById("selected-Tea").style.display = "none";
+                document.getElementById("selected-Sandwich").style.display = "none";
+                document.getElementById("selectedNone").style.display = "none";
+            }
+            else if(selecDrin == 2){
+                document.getElementById("selected-Coffee").style.display = "none";
+                document.getElementById("selected-Tea").style.display = "block";
+                document.getElementById("selected-Sandwich").style.display = "none";
+                document.getElementById("selectedNone").style.display = "none";
+            }else if(selecDrin == 0){
+                document.getElementById("selected-Coffee").style.display = "none";
+                document.getElementById("selected-Tea").style.display = "none";
+                document.getElementById("selected-Sandwich").style.display = "none";
+                document.getElementById("selectedNone").style.display = "none";
+            }
+        }
         // write a function submitted
         function submitted(e){
-            //e.preventDefault();
+            e.preventDefault();
             console.log("validname", validName)
-            if(validName && validLastName && validEmail && validPhone && validAddress1 && validCity && validState && validZipcode){
+            if(validName && validLastName && validEmail && validPhone && validCity && validState && validZipcode && validComment){
                 alert("Data entered succesfull");
-                //window.location.href = "FeedbackComplete.html";
+                window.location.href = "FeedbackComplete.html";
             }
             else{
-                alert("Please enter valid details")
+                alert("Please enter valid details" + validName + validLastName + validEmail + validPhone + validAddress1 + validCity + validState + validZipcode + validComment);
+                window.location.href = "Form.html";
             }
         } 
  </script>
