@@ -101,25 +101,35 @@
             <input type='checkbox' name="source" value="google" /> Google
             <input type='checkbox' name="source" value="yelp" /> Yelp 
 			<br><br>
+            <div id = check style ="display: none; color:red;">
+                Please select a source            
+            </div>
             
             <label for="drinks">Drinks*:</label>
-            <select name="drinks" id="drinks" onchange="validateDrink(this)" required="required">
-                <option value="None">--Please choose a drink--</option>
-                <option value="Coffee">Coffee</option>
-                <option value="Tea">Tea</option>
-                <option value="Sandwich">Sandwich</option>
+            <select id="drinks" onchange="validateDrink(this)">
+                <option value="None" value="0">Choices</option>
+                <option value="Coffee" value="1">Coffee</option>
+                <option value="Tea" value="2">Tea</option>
+                <option value="Sandwich" value="3">Sandwich</option>
             </select>
             <br><br>
-            <div id = "selectedCoffee">
-                <label id = "selected-Coffee" for="selectCoffee" style="display: none;">Coffee-Large<br>(1$ Extra)</label>
+            <!--<div id = "selectedCoffee"  style="display: none;">
+                <label id = "selected-Coffee" for="selectCoffee">Coffee-Large(1$ Extra)</label>
+                <input type="checkbox" name = "drink" value = coffee/>
             </div>
-            <div id = "selectedTea" >
-                <label id = "selected-Tea" for="selectTea" style="display: none;">Lemon tea-Large<br>(1$ Extra)</label>
+            <div id = "selectedTea"  style="display: none;">
+                <label id = "selected-Tea" for="selectTea">Lemon tea-Large(1$ Extra)</label>
             </div>
-            <div id = "selectedSandwich" >
-                <label id = "selected-Sandwich" for="selectSandwich" style="display: none;">Chicken cheese sandwich-Large<br>(1$ Extra)</label>
+            <div id = "selectedSandwich"  style="display: none;">
+                <label id = "selected-Sandwich" for="selectSandwich">Chicken cheese sandwich-Large(1$ Extra)</label>
+            </div>-->
+            <span id = "test">
+                
+            </span>
+
+            <div id = "checkboxFit" style="visibility: hidden;">
+                <input type="checkbox" name="stuff">
             </div>
-            <div id = "selectedNone" style="display: none;"></div>
 
             <br><br>
 			<label for="comments">Comments*:</label>
@@ -138,7 +148,6 @@
  <script>
 	var form = document.getElementById("myForm");
         form.addEventListener("submit", submitted);
-
         // initially we are setting to false 
         var validName = false;
 		var validLastName = false;
@@ -294,6 +303,7 @@
                         validZipcode = true;
                     }
                     break;
+                
                 case "comments":
                     if(value.trim()== ""){
                         document.getElementById(em).style.display = "block";
@@ -310,39 +320,55 @@
         }
 
         function validateDrink(value){
-            var selecDrin = value.options[value.selectedIndex].value;
-            if(selecDrin == 1){
-                document.getElementById("selected-Coffee").style.display = "block";
-                document.getElementById("selected-Tea").style.display = "none";
-                document.getElementById("selected-Sandwich").style.display = "none";
-                document.getElementById("selectedNone").style.display = "none";
-            }
-            else if(selecDrin == 2){
-                document.getElementById("selected-Coffee").style.display = "none";
-                document.getElementById("selected-Tea").style.display = "block";
-                document.getElementById("selected-Sandwich").style.display = "none";
-                document.getElementById("selectedNone").style.display = "none";
-            }else if(selecDrin == 0){
-                document.getElementById("selected-Coffee").style.display = "none";
-                document.getElementById("selected-Tea").style.display = "none";
-                document.getElementById("selected-Sandwich").style.display = "none";
-                document.getElementById("selectedNone").style.display = "none";
+            var selecDrin = value.options[value.selectedIndex].text;
+            document.getElementById('test').innerHTML = selecDrin + " (1$ extra)";
+            if(selecDrin != "Choices"){
+                document.getElementById('checkboxFit').style.visibility = "visible";
+                document.getElementById('test').style.visibility = "visible";
+            }else{
+                document.getElementById('checkboxFit').style.visibility = "hidden";
+                document.getElementById('test').style.visibility = "hidden";
             }
         }
+
+        function radioButtonValue(){
+            var val = document.getElementsByName('title');
+            for (var i = 0; i < val.length; i++) {
+                if (val[i].checked){
+                    return val[i].value;
+                }
+            }
+        }
+
+        function checkbx(){
+            var val = document.getElementsByName('source');
+            const arr = [];
+            for (var i = 0; i < val.length; i++) {
+                if(val[i].checked){
+                    arr[i] = val[i].value;
+                }
+            }return arr;
+        }
+
         // write a function submitted
         function submitted(e){
             e.preventDefault();
+            var title = radioButtonValue();
+            const ar = checkbx();
+            
             console.log("validname", validName)
-            if(validName && validLastName && validEmail && validPhone && validCity && validState && validZipcode && validComment){
+            if(validName && validLastName && validEmail && validPhone && validCity && validState && validZipcode && validComment && ar.length > 0){
                 alert("Data entered succesfull");
+                var data = {'Title':title,'FirstName':document.getElementById("firstName").value,'LastName':document.getElementById("lastName").value,'Email':document.getElementById("emailId").value, 'Phone':document.getElementById("phoneNumber").value, 'StreetAddress1':document.getElementById('streetAddress1').value, 'StreetAddress2':document.getElementById('streetAddress2').value,'City':document.getElementById("city").value, 'State':document.getElementById("state").value, 'Zipcode':document.getElementById("zipcode").value, 'Hear': ar, 'Comment':document.getElementById("comments").value};
+                localStorage.setItem("object_name",JSON.stringify(data));
+                document.getElementById("myForm").reset();
                 window.location.href = "FeedbackComplete.html";
             }
             else{
-                alert("Please enter valid details" + validName + validLastName + validEmail + validPhone + validAddress1 + validCity + validState + validZipcode + validComment);
-                window.location.href = "Form.html";
+                alert("Please enter valid details");
             }
         } 
  </script>
-
+    
  </body>
 </html>
