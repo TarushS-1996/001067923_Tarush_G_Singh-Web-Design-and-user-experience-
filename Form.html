@@ -25,9 +25,9 @@
 		 <br><br>
 		 <form id="myForm">
 			<label>Title*:</label>
-			<input type="radio" name="title" id="miss" value="miss" required="required"/>Miss
-			<input type="radio" name="title" id="mr" value="mr" required="required"/>Mr.
-			<input type="radio" name="title" id="mrs" value="mrs" required="required"/>Mrs.
+			<input type="radio" name="title" id="miss" value="Miss" required="required"/>Miss
+			<input type="radio" name="title" id="mr" value="Mr" required="required"/>Mr.
+			<input type="radio" name="title" id="mrs" value="Mrs" required="required"/>Mrs.
 			<br><br>
 			<label for="firstName">First Name*:</label>
 			<input type="text" name="firstName" id="firstName" placeholder="First Name" />	
@@ -111,6 +111,7 @@
                 <option value="Coffee" value="1">Coffee</option>
                 <option value="Tea" value="2">Tea</option>
                 <option value="Sandwich" value="3">Sandwich</option>
+                <option value="Chipe" value = 4>Chips</option>
             </select>
             <br><br>
             <!--<div id = "selectedCoffee"  style="display: none;">
@@ -128,7 +129,12 @@
             </span>
 
             <div id = "checkboxFit" style="visibility: hidden;">
-                <input type="checkbox" name="stuff">
+                <input type="checkbox" name="stuff" id = "Extra" onclick="addAdditionalInfo()">
+            </div>
+
+            <div id = "additionalInfo" style="display:none;">
+                <label for="addIns">Add instructions:</label>
+                <textarea name="text" id="Info" cols="30" rows="10">None.</textarea>
             </div>
 
             <br><br>
@@ -158,6 +164,8 @@
         var validState = false;
         var validZipcode = false;
         var validComment = false;
+
+        var drinkStr = "";
 
         // regular expressions for name, email and phone
         var regExName = /^[a-zA-Z]+$/;
@@ -325,9 +333,11 @@
             if(selecDrin != "Choices"){
                 document.getElementById('checkboxFit').style.visibility = "visible";
                 document.getElementById('test').style.visibility = "visible";
+                drinkString = selecDrin;
             }else{
                 document.getElementById('checkboxFit').style.visibility = "hidden";
                 document.getElementById('test').style.visibility = "hidden";
+                drinkString = selecDrin
             }
         }
 
@@ -350,16 +360,32 @@
             }return arr;
         }
 
+        function addAdditionalInfo(){
+            var check = document.getElementById('Extra');
+            if (check.checked){
+                document.getElementById('additionalInfo').style.display = 'block';
+            }else{
+                document.getElementById('additionalInfo').style.display = 'none';
+            }
+        }
+
         // write a function submitted
         function submitted(e){
+            var check = document.getElementById('Extra');
             e.preventDefault();
             var title = radioButtonValue();
             const ar = checkbx();
-            
+            var strC = "";
+            if(check.checked){
+                strC.replace("", "Yes");
+            }else{
+                strC.replace("", "No");
+            }
+            var spanText = document.getElementById('test').innerText;
             console.log("validname", validName)
             if(validName && validLastName && validEmail && validPhone && validCity && validState && validZipcode && validComment && ar.length > 0){
-                alert("Data entered succesfull");
-                var data = {'Title':title,'FirstName':document.getElementById("firstName").value,'LastName':document.getElementById("lastName").value,'Email':document.getElementById("emailId").value, 'Phone':document.getElementById("phoneNumber").value, 'StreetAddress1':document.getElementById('streetAddress1').value, 'StreetAddress2':document.getElementById('streetAddress2').value,'City':document.getElementById("city").value, 'State':document.getElementById("state").value, 'Zipcode':document.getElementById("zipcode").value, 'Hear': ar, 'Comment':document.getElementById("comments").value};
+                alert("Data entered succesfull"); 
+                var data = {'Title':title,'FirstName':document.getElementById("firstName").value,'LastName':document.getElementById("lastName").value,'Email':document.getElementById("emailId").value, 'Phone':document.getElementById("phoneNumber").value, 'StreetAddress1':document.getElementById('streetAddress1').value, 'StreetAddress2':document.getElementById('streetAddress2').value,'City':document.getElementById("city").value, 'State':document.getElementById("state").value, 'Zipcode':document.getElementById("zipcode").value, 'Hear': ar, 'Food':spanText, 'AddiInfo':document.getElementById('Info').value, 'Comment':document.getElementById("comments").value};
                 localStorage.setItem("object_name",JSON.stringify(data));
                 document.getElementById("myForm").reset();
                 window.location.href = "FeedbackComplete.html";

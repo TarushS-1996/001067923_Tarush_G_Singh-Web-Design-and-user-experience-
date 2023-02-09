@@ -7,7 +7,7 @@
             float: left;
 			width: 150px;}
         #container{
-            width: auto;
+            width: 1200px;
             margin: auto;
             background-color: beige;
         } 
@@ -15,6 +15,7 @@
             padding: 50px;
         }
         table, th, td{
+
             margin-top: 3%;
             background-color: aliceblue;
             border: 1px solid grey;
@@ -23,7 +24,7 @@
             background-color: grey;
         }
         table{
-            width: 65%;
+            width: auto;
             border-collapse: collapse;
         }
   </style>
@@ -36,27 +37,32 @@
     <div id = "container">
         <main>
             <h2>Form completed here are the details.</h2>
+            <table id = "table">
+                <tr>
+                    <th>Title</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zipcode</th>
+                    <th>Hear about us through</th>
+                    <th>What to have</th>
+                    <th>Additional Information</th>
+                    <th>Comments</th>
+                </tr>
+            </table>
         </main>
         
     </div>
-    <table id = "table">
-        <tr>
-            <th>Title</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zipcode</th>
-            <th>Hear about us through</th>
-            <th>Comments</th>
-        </tr>
-    </table>
+    
 <script>
     var data = localStorage.getItem("object_name");
     //localStorage.clear();
+
+    
     var value0 = JSON.parse(data).Title;
     var value1 = JSON.parse(data).FirstName;
     var value2 = JSON.parse(data).LastName;
@@ -69,6 +75,8 @@
     var value9 = JSON.parse(data).Hear;
     var value10 = JSON.parse(data).StreetAddress1;
     var value11 = JSON.parse(data).StreetAddress2;
+    var value12 = JSON.parse(data).Food;
+    var value13 = JSON.parse(data).AddiInfo;
     var table = document.getElementById("table");
     var insert = table.insertRow(-1);
     var title = insert.insertCell(0)
@@ -81,7 +89,9 @@
     var state = insert.insertCell(7);
     var zip = insert.insertCell(8);
     var hear = insert.insertCell(9);
-    var com = insert.insertCell(10);
+    var food = insert.insertCell(10);
+    var addinf = insert.insertCell(11);
+    var com = insert.insertCell(12);
     title.innerHTML = value0;    
     firstName.innerHTML = value1;
     lastName.innerHTML = value2;
@@ -93,6 +103,8 @@
     com.innerHTML = value8;
     hear.innerHTML = value9;
     add.innerHTML = value10 + " " + value11;
+    food.innerHTML = value12;
+    addinf.innerHTML = value13;
 </script>
 </body>
 </html>
