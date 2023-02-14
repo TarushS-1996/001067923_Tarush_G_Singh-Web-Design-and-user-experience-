@@ -1,5 +1,5 @@
 # 001067923_Tarush_G_Singh
-This repository is for the Wed Design and user experience class
+This repository is for the Wed Design and user experience class\n
 Added the projects in different branches. Please switch branch for viewing different projects.
 
 - Assignment1 (Make 2 pages using HTML5 elements)
