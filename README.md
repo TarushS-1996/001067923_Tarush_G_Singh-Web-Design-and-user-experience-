@@ -1,8 +1,6 @@
 # 001067923_Tarush_G_Singh
-This repository is for the Wed Design and user experience class.\
-Added the projects in different branches. Please switch branch for viewing different projects.
+This is assignment 7 where we need to use SCSS files instead of CSS.\
 
-- Assignment1 (Make 2 pages using HTML5 elements)
-- Assignment2 (Make a portfolio page)
-- Assignment3 (For a provided page, edit to fit the criteria mentioned in the assignment docs)
-- Assignment4 (For a provided page, add validation and ability to view data in table)
+- Use SCSS to style the HTML page
+- We can use previous assignments and edit them
+- Use functions, variables etc to make the SCSS file
