@@ -1,4 +1,7 @@
 // variables
+
+@import "theme";
+
 $color_1: black;
 $color_2: white;
 $font-family_1: Arial, Helvetica, sans-serif;
@@ -7,6 +10,9 @@ $background-color_1: white;
 $background-color_2: rgb(145, 144, 144);
 $background-color_3: rgb(68, 64, 64);
 $background-color_4: black;
+// change main backgroun to change the theme
+$main_background_color: white;
+$background-color_5: changeColor($main_background_color);
 
 .Main-container {
 	margin-left: 10%;
@@ -25,6 +31,7 @@ p {
 //interpolation
 @mixin headerStyle($size, $align, $font) {
     header {
+		background-color: $background-color_5;
         box-shadow: 6px 4px 4px grey;
 	    padding-top: 10%;
 	    padding-bottom: 10%;
@@ -41,6 +48,7 @@ p {
 
 
 body {
+	background-color: $main_background_color;
 	background-repeat: repeat-y;
 	font-family: $font-family_2;
 	padding: auto;
@@ -60,7 +68,7 @@ section {
 	place-items: center;
 	align-content: center;
 	min-height: 70vh;
-	background-color: $background-color_1;
+	background-color: $background-color_5;
 	h4 {
 		font-size: medium;
 	}
@@ -218,6 +226,7 @@ h2 {
 	text-align: center;
 }
 
+// mixin to change the content size using media query
 $breakpoint: 480px;
 
 @mixin mobile-up {

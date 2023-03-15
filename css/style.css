@@ -12,6 +12,7 @@ p {
 }
 
 header {
+  background-color: rgb(241, 221, 179);
   box-shadow: 6px 4px 4px grey;
   padding-top: 10%;
   padding-bottom: 10%;
@@ -25,6 +26,7 @@ header {
 }
 
 body {
+  background-color: white;
   background-repeat: repeat-y;
   font-family: "Times New Roman", Times, serif;
   padding: auto;
@@ -46,7 +48,7 @@ section {
   place-items: center;
   align-content: center;
   min-height: 70vh;
-  background-color: white;
+  background-color: rgb(241, 221, 179);
 }
 section h4 {
   font-size: medium;
