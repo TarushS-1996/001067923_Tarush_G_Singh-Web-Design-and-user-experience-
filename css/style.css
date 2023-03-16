@@ -11,6 +11,11 @@ p {
   color: var(--main-color);
 }
 
+video {
+  display: block;
+  margin: auto;
+}
+
 header {
   background-color: rgb(241, 221, 179);
   box-shadow: 6px 4px 4px grey;
@@ -222,5 +227,9 @@ h2 {
   }
   section {
     width: auto;
+  }
+  video {
+    width: 50%;
+    height: 50%;
   }
 }/*# sourceMappingURL=style.css.map */

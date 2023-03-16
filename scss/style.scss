@@ -28,6 +28,12 @@ p {
    color: var(--main-color);
 }
 
+
+video{
+	display: block;
+	margin: auto;
+}
+
 //interpolation
 @mixin headerStyle($size, $align, $font) {
     header {
@@ -245,4 +251,8 @@ $breakpoint: 480px;
     section {
       width: auto;
     }
+	video{
+		width: 50%;
+		height: 50%;
+	}
   }  
