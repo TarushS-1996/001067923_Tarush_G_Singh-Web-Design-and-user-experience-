@@ -9,8 +9,7 @@ This is assignment 7 where we need to use SCSS files instead of CSS.\
 # Features Implemented:
 
 ## Variables
-'''SCSS
-
+'''
 $color_1: black;
 $color_2: white;
 $font-family_1: Arial, Helvetica, sans-serif;
@@ -19,7 +18,6 @@ $background-color_1: white;
 $background-color_2: rgb(145, 144, 144);
 $background-color_3: rgb(68, 64, 64);
 $background-color_4: black;
-
 '''
 ## Custom properties
 
