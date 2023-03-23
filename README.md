@@ -4,7 +4,7 @@ Design a mongoDB based application and implement create read update and delete f
 # Steps to setup the app
  Use npm install to install the libraries mentioned in the package.json file
 ```
-    npm install
+npm install
 ```
 
 Use npm start inside of the directory *001067923_Tarush_G_Singh-Web-Design-and-user-experience-*
