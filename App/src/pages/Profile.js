@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 function Profile(){
     return(
+      <div classname = "min-vw-100">
         <CardGroup>
         <Card>
           <Card.Img variant="top" src="holder.js/100px160" />
@@ -48,6 +49,7 @@ function Profile(){
           </Card.Footer>
         </Card>
       </CardGroup>
+      </div>
     )
 }
 
